@@ -40,7 +40,7 @@ define(['N/render', 'N/search', 'N/log', 'N/record', 'N/config'],
       // var balanceDue = salesOrderObj.getValue({ fieldId: 'custbody_so_balance_due' });
       var amountPaid = salesOrderObj.getValue({ fieldId: 'custbody_so_amount_paid' });
       var depositAmount = salesOrderObj.getValue({ fieldId: 'custbody_sp_deposit_amount' });
-      var DepositeAmt = depositAmount - amountPaid;
+      var DepositeAmt = parseInt(amountPaid) - parseInt(depositAmount);
       var depositAmountToPrecision = DepositeAmt.toPrecision(2);
       var BalanceDue = total - amountPaid;
       var employeeObj = record.load({
