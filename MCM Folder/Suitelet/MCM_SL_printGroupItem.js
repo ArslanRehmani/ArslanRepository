@@ -169,22 +169,36 @@ define(['N/render', 'N/search', 'N/log', 'N/record', 'N/config'],
             <td colspan="8" style="width:40%;border-top: 1px solid;">\
             <table style="width:100%;margin-top:0mm">\
             <tr>\
-            <td><p style="font-size:7pt;"><b>CURRENCY</b></p><br />\
-            <p style="font-size:7pt;"><b>SUBTOTAL</b></p><br />\
-            <p style="font-size:7pt;"><b>DISCOUNT</b></p><br />\
-            <p style="font-size:7pt;"><b>SHIPPING</b></p><br />\
-            <p style="font-size:7pt;"><b>GST</b></p><br />\
-            <p style="font-size:7pt;"><b>TOTAL INCL GST</b></p><br />\
-            <p style="font-size:7pt;"><b>TERMS</b></p><br />\
-            <p style="font-size:7pt;"><b>DEPOSIT REQ.</b></p></td>\
-            <td><p  style="font-size:7pt;">'+ searchResults.currency + '</p><br />\
-            <p style="font-size:7pt;">'+ searchResults.currency + ' ' + totalDiscountedAmount + '</p><br />\
-            <p style="font-size:7pt;">'+ searchResults.currency + ' ' + searchResults.discounttotal + '</p><br />\
-            <p style="font-size:7pt;">'+ searchResults.currency + ' ' + searchResults.shippingCost + '</p><br />\
-            <p style="font-size:7pt;">'+ searchResults.currency + ' ' + searchResults.taxtotal + '</p><br />\
-            <p style="font-size:7pt;">'+ searchResults.currency + ' ' + totalINCL + '</p><br />\
-            <p style="font-size:7pt;">'+ searchResults.terms + '</p><br />\
-            <p style="font-size:7pt;">'+ searchResults.currency + ' ' + totalINCL / 2 + '</p><br />\</td>\
+            <td><p style="font-size:7pt;"><b>CURRENCY</b></p></td>\
+            <td><p  style="font-size:7pt;">'+ searchResults.currency + '</p></td>\
+            </tr>\
+            <tr>\
+            <td><p style="font-size:7pt;"><b>SUBTOTAL</b></p></td>\
+            <td><p style="font-size:7pt;">$ ' + totalDiscountedAmount + '</p></td>\
+            </tr>\
+            <tr>\
+            <td><p style="font-size:7pt;"><b>DISCOUNT</b></p></td>\
+            <td><p style="font-size:7pt;">$ '+ discountItem + '</p></td>\
+            </tr>\
+            <tr>\
+            <td><p style="font-size:7pt;"><b>SHIPPING</b></p></td>\
+            <td><p style="font-size:7pt;">$ ' + searchResults.shippingCost + '</p></td>\
+            </tr>\
+            <tr>\
+            <td><p style="font-size:7pt;"><b>GST</b></p></td>\
+            <td><p style="font-size:7pt;">$ ' + searchResults.taxtotal + '</p></td>\
+            </tr>\
+            <tr>\
+            <td><p style="font-size:7pt;margin-top:1mm;padding-top:2mm;"><b>TOTAL INCL GST</b></p></td>\
+            <td><p style="font-size:15pt;margin-top:1mm;"><b>$ ' + totalINCL + '</b></p></td>\
+            </tr>\
+            <tr>\
+            <td><p style="font-size:7pt;"><b>TERMS</b></p></td>\
+            <td><p style="font-size:7pt;">'+ searchResults.terms + '</p></td>\
+            </tr>\
+            <tr>\
+            <td><p style="font-size:7pt;margin-top:1mm;padding-top:2mm;"><b>DEPOSIT REQ.</b></p></td>\
+            <td><p style="font-size:15pt;margin-top:1mm;"><b>$ ' + totalINCL / 2 + '</b></p></td>\
             </tr>\
             </table>\
             </td>\
@@ -266,7 +280,7 @@ define(['N/render', 'N/search', 'N/log', 'N/record', 'N/config'],
                 });
                 resultsObj.empEmail = employeeObj.getValue({ fieldId: 'email' });
                 var empPhone = employeeObj.getValue({ fieldId: 'phone' });
-                resultsObj.empLocation = employeeObj.getValue({ fieldId: 'location' });
+                resultsObj.empLocation = employeeObj.getText({ fieldId: 'location' });
                 var empMobilePhone = employeeObj.getValue({ fieldId: 'mobilephone' });
                 if (empPhone) {
                     resultsObj.empContact = empPhone;
