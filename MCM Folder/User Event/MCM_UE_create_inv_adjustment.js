@@ -4,27 +4,7 @@
  */
 define(['N/log','N/record'], function(log,record) {
 
-    function beforeSubmit(context) {
-        var title = 'beforeSubmit(::)';
-        try{
-            var newValue = context.newRecord;
-            var newStatus = newValue.getValue('shipstatus');
-            log.debug({
-                title: 'newStatus',
-                details: newStatus
-            });
-          var invoiceDate = newValue.getValue('custbody_if_invoice_date');
-                if(newStatus == 'C' && !invoiceDate){
-                    var shipSatatusDate = new Date();
-                        var thirdDayDate = shipSatatusDate.setDate(shipSatatusDate.getDate() + 3);
-                        newValue.setValue('custbody_if_invoice_date', new Date(thirdDayDate));
-                }else if(newStatus != 'C'){
-                    newValue.setValue('custbody_if_invoice_date', '');
-                }
-        } catch(e) {
-            log.debug('Exception ' +title, e.message);
-        }
-    }
+
     function afterSubmit(context) {
         var title = 'afterSubmit(::)';
         try{
@@ -90,8 +70,7 @@ define(['N/log','N/record'], function(log,record) {
                             });
                             itemAdjustment.setValue({
                                 fieldId: 'account',
-                                // value: 235,SB
-                                value: 589,
+                                value: 235,
                                 ignoreFieldChange : true,
                                 fireSlavingSync : true
                             });
@@ -142,8 +121,8 @@ define(['N/log','N/record'], function(log,record) {
         }
         
     }
+
     return {
-        beforeSubmit: beforeSubmit,
-        afterSubmit:afterSubmit
+        afterSubmit: afterSubmit
     }
 });
